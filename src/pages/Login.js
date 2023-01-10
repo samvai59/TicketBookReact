@@ -13,14 +13,16 @@ const onSubmit = (e) => {
     e.preventDefault();
     console.log(username);
     console.log(password);
-    axios.post("http://localhost:9000/login", {
+    axios.post("http://localhost:8800/log", {
         username: username,
         password: password
     }).then((response) => {
-            console.log(response);
-            if(response.data.message){
-                setIsLoggedin(true);
-            }
+            if(response.data=="Success")
+                console.log("Login Done");
+            else
+                console.log("Login Failed");
+
+
         }
     );
 }
@@ -28,15 +30,19 @@ const onSubmit = (e) => {
         <div>
             <form onSubmit={onSubmit}>
                 <label>Username</label>
+                <br></br>
                 <input type="text" onChange={event =>
 
                 setUsername(event.target.value)}
                 />
+                <br></br>
                 <label>Password</label>
+                <br></br>
                 <input type="password" onChange={event =>
 
                 setPassword(event.target.value)}
                 />
+                <br></br>
 
 
                 <button type="submit">Login</button>
